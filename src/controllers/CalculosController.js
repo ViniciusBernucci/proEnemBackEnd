@@ -1,14 +1,29 @@
 import CalculosModel from "../models/CalculosModel.js";
 import ModulosHumanasModel from "../models/ModulosModel.js";
+import Core from "../core/core.js"
+
 
 
 class CalculosController {
 
-    async calculos(req, res) {
+    async calculate(req, res) {
 
         try {
-            const modulos = await ModulosHumanasModel.retornarModulos();
-            res.json(modulos);
+            const data = req.body;
+            console.log(data);
+
+            var dataInicio = data.dataInicio
+            var dataFim = data.dataFim
+            var diasDaSemana = data.dias
+            var feriados = data.feriados
+
+
+            var resultado = Core.totalDias(dataInicio, dataFim, diasDaSemana, feriados)
+
+            console.log(resultado)
+
+            //const modulos = await ModulosHumanasModel.retornarModulos();
+            //res.json(modulos);
 
         }catch (error) {
             console.error(error);
@@ -17,3 +32,5 @@ class CalculosController {
     }
 
 }
+
+export default new CalculosController();

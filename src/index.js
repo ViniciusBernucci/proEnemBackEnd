@@ -1,5 +1,6 @@
 import express from 'express';
 import modulos from "./routes/ModulosRoute.js"
+import calculos from "./routes/CalculosRoute.js"
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 // Rotas
 app.use(modulos)
+app.use(calculos)
 
 
 
@@ -17,4 +19,4 @@ app.listen(9000, async () => {
 
 })
 
-//export default app;
+export default app;
