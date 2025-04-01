@@ -1,7 +1,7 @@
 import pool from "../server/conn.js"
 
 
-class CalculosModel {
+class CalculosModel { 
 
 
 }

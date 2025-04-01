@@ -17,7 +17,7 @@ class CalculosController {
 
             var resultado = Core.totalDias(dataInicio, dataFim, diasDaSemana, feriados)
 
-            console.log("resultado");
+            console.log("resultado 1");
             console.log(resultado);
 
             //const modulos = await ModulosHumanasModel.retornarModulos();

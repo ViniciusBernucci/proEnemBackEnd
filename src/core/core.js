@@ -4,7 +4,6 @@ import axios from "axios";
 
 class Core {
 
-
 //-----> O que espera receber do front <-------
 
 // 1 - Data Inicio , Data Fim do planejamento
@@ -21,8 +20,10 @@ class Core {
         var ano = parseInt(partes[2], 10);
         return new Date(ano, mes, dia); }
 
-    totalDias(vDataInicio, vDataFim, vDiasDaSemana, vFeriados) {
+    async totalDias(vDataInicio, vDataFim, vDiasDaSemana, vFeriados) {
 
+        console.log("CHEGOU EM TOTAL DIAS")
+        let feriadosNacionais
         let dataInicio = this.stringParaData(vDataInicio)
         let dataFim = this.stringParaData(vDataFim)
 
@@ -54,33 +55,37 @@ class Core {
 
         let partesInicio = vDataInicio.split("/");
         let anoInicio = parseInt(partesInicio[2], 10);
-
-        let partesFim = vDataFim.split("/");
+   
+        let partesFim = vDataFim.split("/")
         let anoFim = parseInt(partesFim[2], 10);
 
 
         feriados = []
         if(anoFim - anoInicio == 0) {
-            let feriadosNacionais = obterFeriados(anoInicio)
+            feriadosNacionais = await obterFeriados(anoInicio)
 
             console.log("feriados Nacionais")
+            console.log(feriadosNacionais);
             console.log (typeof (feriadosNacionais));
 
-            feriadosNacionais.forEach(feriado => {
-                if(diasDeEstudo.includes(feriado.date)) {
+
+           /* for(let i = 0; feriadosNacionais.lenght < i; i++) {
+                 if(diasDeEstudo.includes(feriado.date)) {
                     feriados.push(feriado.date)
                 }
-            })
+            }*/
+
+            //feriadosNacionais.forEach(feriado => {})
+               
         }else {
             console.log ("ELSE")
             obterFeriados (anoInicio)
             obterFeriados(anoFim)
         }
 
-        return feriados
+
+        return feriadosNacionais
     }
-
-
 }
 
 async function obterFeriados(ano) {
