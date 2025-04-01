@@ -1,9 +1,9 @@
-import pkg from 'pg';
 import dotenv from 'dotenv';
+dotenv.config(); // Isso deve ser a primeira coisa no código
 
-// Carrega as variáveis de ambiente do arquivo .env
-dotenv.config();
+//console.log("Usuário do banco:", process.env.DB_USER); // Teste se está carregando
 
+import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
